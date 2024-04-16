@@ -31,7 +31,6 @@ class GithubController extends Controller
         ],[
             'name' => $githubUser->name,
             'email' => $githubUser->email,
-            'github_id' => $githubUser->id,
         ]);
 
         Auth::login($user);
