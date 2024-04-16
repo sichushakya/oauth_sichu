@@ -52,7 +52,7 @@ class JsonController extends Controller
 
             $notification = [
                 'message' => 'Json file sucessfully uploaded !',
-                'color' => 'green'
+                'color' => '#3b3'
             ];
 
             return redirect()->route('form')->with(compact('notification'));
@@ -86,7 +86,7 @@ class JsonController extends Controller
 
         $notification = [
             'message' => 'Export has started',
-            'color' => 'green'
+            'color' => '#3b3'
         ];
 
         return redirect()->route('form')->with(compact('notification'));
