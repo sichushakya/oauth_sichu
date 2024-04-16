@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersExport;
-use App\Models\c;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Session;
-
 
 
 class JsonController extends Controller
@@ -49,7 +45,6 @@ class JsonController extends Controller
             //stores in storage/app/public/uploads
            $request->file('jsonFile')->storeAs('uploads', $filename ,'public');
 
-
             $notification = [
                 'message' => 'Json file sucessfully uploaded !',
                 'color' => '#3b3'
@@ -81,7 +76,7 @@ class JsonController extends Controller
 
 
 
-        /** Exporting to storage/app/exports USING queue */
+        /** Exporting to storage/app/exports WITH queue */
          (new UsersExport())->queue('exports/users.xlsx'); //takes a bit of time
 
         $notification = [

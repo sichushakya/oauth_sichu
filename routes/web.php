@@ -20,16 +20,14 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('auth/github', [GithubController::class, 'toGitHub'] )->name('auth.github');
-
-Route::get('auth/callback', [GithubController::class, 'callback'] )->name('auth.callback');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::prefix('auth')->name('auth.')->group(function(){
+    Route::get('/github', [GithubController::class, 'toGitHub'] )->name('github');
+    Route::get('/callback', [GithubController::class, 'callback'] )->name('callback');
+});
 
 Route::middleware('auth:web')->group(function () {
     Route::get('form', [JsonController::class, 'index'])->name('form');
